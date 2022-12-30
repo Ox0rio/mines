@@ -163,11 +163,11 @@ namespace model
         case 0:
           this->boardPlayer.setCell(x, y, 0);
 
-          for (int x = -1; x < 2; x++)
+          for (int x_ = x-1; x_ <= x+1; x_++)
           {
-            for (int y = -1; y < 2; y++)
+            for (int y_ = y-1; y_ <= y+1; y_++)
             {
-              this->clickUnknown(x, y);
+              this->clickUnknown(x_, y_);
             }
           }
           break;
@@ -190,13 +190,13 @@ namespace model
   unsigned short Game::countMines(unsigned short x, unsigned short y)
   {
     unsigned short cpt = 0;
-    for (int x = -1; x < 2; x++)
+    for (int x_ = x-1; x_ <= x+1; x_++)
     {
-      for (int y = -1; y < 2; y++)
+      for (int y_ = y-1; y_ <= y+1; y++)
       {
         try
         {
-          if (this->boardPlayer.getCell(x, y) == -1)
+          if (this->boardPlayer.getCell(x_, y_) == -1)
           {
             cpt++;
           }
@@ -213,15 +213,15 @@ namespace model
   {
     if (this->boardPlayer.getCell(x, y) == this->countMines(x, y))
     {
-      for (int x = -1; x < 2; x++)
+      for (int x_ = x-1; x_ < x+1; x_++)
       {
-        for (int y = -1; y < 2; y++)
+        for (int y_ = y-1; y_ < y+1; y_++)
         {
           try
           {
-            if (this->boardPlayer.getCell(x, y) == -3)
+            if (this->boardPlayer.getCell(x_, y_) == -3)
             {
-              this->clickUnknown(x, y);
+              this->clickUnknown(x_, y_);
             }
           }
           catch (std::exception e)
@@ -231,5 +231,4 @@ namespace model
       }
     }
   }
-
 }

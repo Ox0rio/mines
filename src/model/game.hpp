@@ -63,12 +63,23 @@ namespace model
     void clickKnown(unsigned short x, unsigned short y);
 
   protected:
+    /*
+     * Board that is display to the player :
+     *  - [0:8] : mines number close to the square
+     *  - -3    : Unknown case 
+     *  - -2    : Flag on the case
+     */
     model::Board boardPlayer;
     model::difficultyValue d;
     unsigned short mines;
     unsigned short width;
     unsigned short height;
-
+    
+    /*
+     * Board that is hide wich contains the solution :
+     *  - [0:8] : mines number close to the square
+     *  - -1    : mines
+     */
     model::Board boardSolver;
   };
 }
